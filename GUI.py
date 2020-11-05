@@ -10,7 +10,7 @@ Modules that need to be built:
 - choose which detected excel sheet to use from a list of excel sheets
     + scrollable column
     + listbox containing list of detected excel sheets
-    - wiring
+    + wiring
     - feedback window to confirm choice
 - input text of which column to perform searches for
     + inputtext()
@@ -33,6 +33,7 @@ Modules that need to be built:
     - calls on the web scraping module
         - will print which business is being searched and the URLs that are being scraped
         - will input the scraped data into the excel sheet
+        - I'll need to run this as a subprocess so that the user can maintain control of the gui.
     - 
 - "Stop Scraping" button
     + created button
@@ -41,7 +42,8 @@ Modules that need to be built:
     + created Feedback window
     - feedback window shows if manual review is needed in red text
     - press "Continue Scraping" button when manual review is finished
-    - pause scraping must not be visible when Continue Scraping is visible
+    x pause scraping must not be visible when Continue Scraping is visible
+        # pause button has been removed because create and write abilities are not always available.
     - Continue Scraping must only be visible when manual review is triggered
 
 
@@ -72,8 +74,9 @@ The right is going to be reserved for the feedback and status conditions.
 """
 
 import PySimpleGUI as sg
-import detect_excels as dexcels
-
+import detect_excels as des
+import web_scraper as ws
+import subprocess
 
 sg.theme("DarkAmber")
 
@@ -97,6 +100,21 @@ excel_column_inputtext = "excel column"
 top_results_inputtext = "top results"
 addendum_inputtext = "addendum"
 
+# Initializing variables
+detected_excels = des.DetectExcels.detect()
+"""
+sanitizing functions
+case_not_integer = "An integer was not entered. Please Enter an integer."
+def sanitize_integer_input(tester, max_numb):
+    while tester.isdigit() == False:
+        print("\n" + case_1_not_integer + "\n")
+        tester = input(">")
+    while int(tester) > max_numb or int(tester) < 1:
+        print("\n" + case_2_not_acceptable + "\n")
+        tester = input(">")
+    return tester
+
+"""
 
 layout = [
     [
@@ -141,7 +159,7 @@ layout = [
                             ],
                             [
                                 sg.Listbox(
-                                    values=["excel_a", "excel_b"],
+                                    values=detected_excels,
                                     auto_size_text=True,
                                     size=(40, 10),
                                     key=excel_chosen_listbox,
@@ -247,14 +265,6 @@ layout = [
                             ],
                             [
                                 sg.Button(
-                                    button_text="Pause Scraping",
-                                    pad=pad_button,
-                                    visible=True,
-                                    key=pause_button,
-                                ),
-                            ],
-                            [
-                                sg.Button(
                                     button_text="Continue Scraping",
                                     pad=pad_button,
                                     visible=True,
@@ -276,8 +286,20 @@ window = sg.Window(
     "Simple Lead Generator by Francis IT Consulting",
     layout=layout,
     resizable=True,
-    finalize=True,
+    # finalize=True,
 )
+""" Values
+{
+    "skip review checkbox": False,
+    "emails checkbox": True,
+    "phone numbers checkbox": True,
+    "contact urls checkbox": True,
+    "excel_chosen_listbox": [],
+    "excel column": "A",
+    "top results": "1",
+    "addendum": "",
+}
+"""
 
 while True:
     event, values = window.read()
@@ -287,13 +309,15 @@ while True:
         break
     if event == detect_excel_button:
         print("Triggerring excel detection function. ")
-        # import.excelfunction(values)
+        detected_excels = des.DetectExcels.detect()
+        print(detected_excels)
+        window[excel_chosen_listbox].update(values=detected_excels)
     if event == begin_button:
         print("Triggerring Begin Scraping function.")
-    if event == pause_button:
-        print("Triggerring pause function.")
+
     if event == continue_button:
         print("Triggerring Continue function.")
+        window[continue_button].update(visible=False)
     if event == stop_button:
         print("Triggerring Stop Scraping.")
 window.close()
