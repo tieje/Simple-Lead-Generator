@@ -1,0 +1,79 @@
+notes for this meeting
+
+premium ad tech
+
+costar
+crexi
+
+scraping the web for investors, bankers, and buyers
+
+advertise: fish the right people
+categorize investors, bankers, and buyers
+
+
+Find the names
+commercial observer website. There are many websites
+scraping sales and buyers from articles
+looking for restaurant buyers and sellers
+
+where to put the data
+thinking of separate excel sheets
+tab for apartment buyers.
+
+columns
+names, info, and notes
+
+Need to specify how to separate the data
+Classifications
+
+onedrive that only the four people in this room has access to
+how to categorize by who they are, what they do and their interests
+
+1. Sheet
+2. Data collection
+3. User-access
+4. Figuring out what they want.
+
+Want:
+collecting data and getting through gatekeepers
+
+first name
+last name
+emails
+(guessing)
+
+Agent Emails on SMART MLS
+copy and paste the information
+
+go to generate roster > architect > continue > download excel file
+
+take the business name 
+
+Results > Property > sales history > 
+
+e-licence
+
+I need email
+
+trying to get the contacts from everywhere
+
+getting a list of company names
+get a list of emails
+
+1. List of Data sources
+	# data source must be able to come from anywhere
+2. Scrape those data sources for businesses
+	# no need to scrape those data sources since they should have the ability to export to an excel sheet
+3. Search on Google and click the first result
+	# I'm going to use the Chrome driver and selenium for this part... or... I think I'm just going to use selenium. I don't think I'll scrapy for this project because there is a lot web browsing.
+	# Might want to use the top three links actually.
+4. Click the "contact us" hyperlink.
+5. Scrape as many emails as possible
+6. Return a list of emails for one cell associated with each business.
+
+This is meant to be a tool that anyone can use.
+
+https://www.elicense.ct.gov/lookup/licenselookup.aspx go to generate roster
+https://www.concord-sots.ct.gov/CONCORD/online?sn=PublicInquiry&eid=9740 for company names
+
+tj@scalzo.com to sign in to onedrive, check shared
