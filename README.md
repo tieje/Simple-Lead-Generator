@@ -4,4 +4,5 @@ The purpose of this script is to scrape emails, phone numbers, and contact urls 
 To use this script please do the following:
 
 1. Run the executable in dist folder.
-
+2. Open a file in Excel.
+3. Have Internet access.
