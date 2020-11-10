@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 ipython = "*"
+pysimplegui-exemaker = "*"
 
 [packages]
 selenium = "*"
