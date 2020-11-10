@@ -3,6 +3,6 @@
 The purpose of this script is to scrape emails, phone numbers, and contact urls from the top result of duckduckgo from a list of business names in an excel sheet.
 To use this script please do the following:
 
-1. Run the executable in dist folder.
+1. Run the executable in dist/cxfreeze or dist/exemaker folder.
 2. Open a file in Excel.
 3. Have Internet access.
